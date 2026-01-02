@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>my calculater</title>
+    <style>
+        body{
+            text-align: center;
+        }
+     .mycalculater {
+    background: linear-gradient(45deg, #1710e1, #852957, #ff0000);
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+   
+    
+    position: relative;
+}
+
+.mycalculater::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(270deg, rgb(156, 102, 102), rgb(81, 81, 228), rgb(247, 4, 247), rgb(0, 0, 0));
+    background-size: 600% 600%;
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderMove 5s linear infinite;
+}
+
+@keyframes borderMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+     button {
+    width: 70px;
+    height: 55px;
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background: linear-gradient(45deg, #35329d, #000000);
+    border: solid rgba(0, 0, 255, 0.201);
+    color: white;
+}
+input {
+    margin-bottom: 7px;
+    width: 316px;
+    height: 40px;
+    border-radius: 3px;
+    font-size: 20px;
+    background: linear-gradient(45deg, #120cf3c2, #000000a6);
+    border: solid blue;
+    color: white;
+}
+button:hover {
+    border: solid blue;
+    transform: scale(1.1);
+}
+
+    </style>
+    </head>
+    <body>
+        <div class="mycalculater">
+        <input type="text" id="display">
+        <div class="row">
+            <button onclick="cleardisplay()">C</button>
+            <button onclick="clickdisplay('/')">/</button>
+            <button onclick="clickdisplay('*')">*</button>
+            <button onclick="clickdisplay('-')">-</button>
+        </div>
+        <div class="row">
+             <button onclick="clickdisplay('7')">7</button>
+            <button onclick="clickdisplay('8')">8</button>
+            <button onclick="clickdisplay('9')">9</button>
+            <button onclick="clickdisplay('+')">+</button>
+        </div>
+         <div class="row">
+             <button onclick="clickdisplay('4')">4</button>
+            <button onclick="clickdisplay('5')">5</button>
+            <button onclick="clickdisplay('6')">6</button>
+            <button onclick="clickdisplay(')')">)</button>
+        </div>
+         <div class="row">
+             <button onclick="clickdisplay('1')">1</button>
+            <button onclick="clickdisplay('2')">2</button>
+            <button onclick="clickdisplay('3')">3</button>
+            <button onclick="clickdisplay('%')">%</button>
+        </div>
+         <div class="row">
+             <button onclick="clickdisplay('(')">(</button>
+            <button onclick="clickdisplay('0')">0</button>
+            <button onclick="clickdisplay('.')">.</button>
+            <button onclick="calculate('=')">=</button>
+        </div> 
+        </div>       
+    </body>
+    <script>
+        function clickdisplay(val){
+            document.getElementById("display").value += val;
+
+        }
+        function cleardisplay(){
+             document.getElementById("display").value = "";
+        }
+        function calculate(){
+            let a=document.getElementById("display").value;
+            a = a.replace(/%/g, "/100");
+            try{
+                document.getElementById("display").value =eval(a);
+            }
+            catch(error){
+                document.getElementById("display").value = "error";
+            }
+
+        }
+        
+    </script>
+
+</html>
